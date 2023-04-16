@@ -1,5 +1,5 @@
 {
-    "tools|block": "工具",
-    "tools.areaOfRectangle|block": "長方形面積 長 %length|寬 %width",
-    "tools.ledOfRectangle|block": "LED顯示長方形面積 長 %length|寬 %width"
+    "tools|block": "巡線甲蟲擴充套件",
+    "tools.turn_on_fill_light|block": "開啟補光燈",
+    "tools.turn_off_fill_light|block": "關閉補光燈"
 }
