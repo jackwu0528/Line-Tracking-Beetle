@@ -1,4 +1,4 @@
-//% weight=0 color=#3CB371 icon="\uf0ad" block="Tools"
+//% weight=0 color=#3CB371 icon="\f544" block="Tools"
 namespace tools {
     //% weight=0
     //% blockId="turn_on_fill_light" block="Trun On Fill Light"
