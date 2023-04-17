@@ -1,7 +1,45 @@
+let WB_RGB = [0.52,1,1]
+let LINE_THRESHOLD = 150
+
+enum Servos {
+    //% blockId="S1" block="Raise (S1)"
+    raise_servo = 0,
+    //% blockId="S2" block="Plier (S2)"
+    plier_servo = 1
+}
+
+enum ColorEvent {
+    //% block=Black
+    Black = 0,
+    //% block=Red
+    Red = 1,
+    //% block=Green
+    Green = 2,
+    //% block=Blue
+    Blue = 3,
+    //% block=White
+    White = 4,
+    //% block=Others
+    Other = 5
+};
+
 //% weight=0 color=#004028 icon="\uf135" block="Line Tracking Beetle"
 namespace linetrackingbeetle {
-    let WB_RGB = [0.52,1,1]
-    let LINE_THRESHOLD = 150
+    //% weight=0
+    //% blockId=servo_run block="Servo|%index|Angle|%angle (0~90)"
+    //% angle.min=0 angle.max=90
+    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
+    export function servo_run(index: Servos, angle: number): void {
+        let buf = pins.createBuffer(2);
+        if (index == 0) {
+            buf[0] = 0x14;
+        }
+        if (index == 1) {
+            buf[0] = 0x15;
+        }
+        buf[1] = angle;
+        pins.i2cWriteBuffer(0x10, buf);
+    }
 
 
     //% weight=0
