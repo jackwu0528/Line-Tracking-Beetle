@@ -2,8 +2,8 @@ let WB_RGB = [0.52,1,1]
 let LINE_THRESHOLD = 150
 
 enum Servos {
-    //% blockId="S1" block="Raise (S1)"
-    raise_servo = 0,
+    //% blockId="S1" block="Uplift (S1)"
+    uplift_servo = 0,
     //% blockId="S2" block="Plier (S2)"
     plier_servo = 1
 }
@@ -23,8 +23,8 @@ enum ColorEvent {
     Other = 5
 };
 
-//% weight=0 color=#d4af37 icon="\uf135" block="Line Tracking Beetle"
-namespace linetrackingbeetle {
+//% weight=0 color=#d4af37 icon="\uf135" block="Maqueen Mechanic-Beetle"
+namespace MaqueenMechanicBeetle {
     //% weight=0
     //% blockId=servo_run block="Servo|%index|Angle|%angle (0~90)"
     //% angle.min=0 angle.max=90
