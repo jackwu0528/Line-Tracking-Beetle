@@ -1,6 +1,6 @@
-# tools
+# LineTrackingBeetle
 
-這是【鈺瀚工作室】專為 麥昆小車 打造的【四路巡線+顏色辨識 甲蟲 擴充套件】
+這是【鈺瀚工作室】專為 麥昆小車 打造的【巡線甲蟲擴充套件】
 
 ## License
 
@@ -12,5 +12,5 @@ MIT
 (The metadata above is needed for package search.)
 
 ```package
-tools=github:/tools
+tools=github:jackwu0528/LineTrackingBeetle
 ```
