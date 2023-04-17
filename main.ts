@@ -58,16 +58,16 @@ namespace LineTrackingBeetle {
         let color_r = buf[1]*256 + buf[0]
         let color_g = buf[3]*256 + buf[2]
         let color_b = buf[5]*256 + buf[4]
-        color_r = int(color_r/WB_RGB[0])
-        color_g = int(color_g/WB_RGB[1])
-        color_b = int(color_b/WB_RGB[2])
+        color_r = Math.floor(color_r/WB_RGB[0])
+        color_g = Math.floor(color_g/WB_RGB[1])
+        color_b = Math.floor(color_b/WB_RGB[2])
 
         let maxColor = max(color_r, color_g, color_b)
         if(maxColor > 255) {        
             let scale = 255 / maxColor
-            color_r = int(color_r * scale)
-            color_g = int(color_g * scale)
-            color_b = int(color_b * scale)
+            color_r = Math.floor(color_r * scale)
+            color_g = Math.floor(color_g * scale)
+            color_b = Math.floor(color_b * scale)
         }
 
         return (color_b + color_g * 256 + color_r * 65536);
