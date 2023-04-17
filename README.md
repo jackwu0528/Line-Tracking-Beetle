@@ -1,6 +1,6 @@
 # tools
 
-這是專為測試用的micro:bit積木
+這是【鈺瀚工作室】專為 麥昆小車 打造的【四路巡線+顏色辨識 甲蟲 擴充套件】
 
 ## License
 
@@ -12,5 +12,5 @@ MIT
 (The metadata above is needed for package search.)
 
 ```package
-tools=github:lioujj/pxt-tools
+tools=github:/pxt-tools
 ```
