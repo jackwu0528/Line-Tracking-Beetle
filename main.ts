@@ -62,7 +62,7 @@ namespace linetrackingbeetle {
         color_g = Math.floor(color_g/WB_RGB[1])
         color_b = Math.floor(color_b/WB_RGB[2])
 
-        let maxColor = Math.max(color_r, color_g, color_b)
+        let maxColor = Math.max(color_r, Math.max(color_g, color_b))
         if(maxColor > 255) {        
             let scale = 255 / maxColor
             color_r = Math.floor(color_r * scale)
