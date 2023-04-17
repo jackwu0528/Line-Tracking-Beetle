@@ -1,4 +1,4 @@
-//% weight=0 color=#004028 icon="\uf544" block="LineTrackingBeetle"
+//% weight=0 color=#004028 icon="\uf135" block="LineTrackingBeetle"
 namespace LineTrackingBeetle {
     //% weight=0
     //% blockId="turn_on_fill_light" block="Trun On Fill Light"
