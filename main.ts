@@ -1,5 +1,5 @@
-//% weight=0 color=#004028 icon="\uf135" block="LineTrackingBeetle"
-namespace LineTrackingBeetle {
+//% weight=0 color=#004028 icon="\uf135" block="Line Tracking Beetle"
+namespace linetrackingbeetle {
     let WB_RGB = [0.52,1,1]
     let LINE_THRESHOLD = 150
 
