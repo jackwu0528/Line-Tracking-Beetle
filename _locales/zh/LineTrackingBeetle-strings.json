@@ -1,0 +1,7 @@
+{
+    "LineTrackingBeetle|block": "巡線甲蟲擴充套件",
+    "LineTrackingBeetle.turn_on_fill_light|block": "開啟補光燈",
+    "LineTrackingBeetle.turn_off_fill_light|block": "關閉補光燈",
+    "LineTrackingBeetle.initialize_color_sensor|block": "初始化顏色感測器",
+    "LineTrackingBeetle.get_color|block": "讀取顏色數值",
+}
