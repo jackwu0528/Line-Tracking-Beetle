@@ -23,7 +23,7 @@ enum ColorEvent {
     Other = 5
 };
 
-//% weight=0 color=#ffd43a icon="\uf135" block="Line Tracking Beetle"
+//% weight=0 color=#d4af37 icon="\uf135" block="Line Tracking Beetle"
 namespace linetrackingbeetle {
     //% weight=0
     //% blockId=servo_run block="Servo|%index|Angle|%angle (0~90)"
