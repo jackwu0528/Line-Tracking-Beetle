@@ -10,7 +10,3 @@ MIT
 
 * for PXT/microbit
 (The metadata above is needed for package search.)
-
-```package
-tools=github:jackwu0528/pxt-tools
-```
