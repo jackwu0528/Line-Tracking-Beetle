@@ -99,7 +99,7 @@ namespace MaqueenMechanicBeetle {
     //% weight=0
     //% blockId="get_color" block="Measure Color"
     export function get_color(): number {
-        pins.i2cWriteNumber(0x39, 0x96, NumberFormat.Int8LE)
+        pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE)
         let buf = pins.i2cReadBuffer(0x39, 6)
 
         let color_r = buf[1]*256 + buf[0]
@@ -124,8 +124,8 @@ namespace MaqueenMechanicBeetle {
     //% weight=0
     //% block="read line-tracking sensor|%patrol grayscale "
     export function readPatrolVoltage(patrol: Patrol): number {
-        pins.i2cWriteNumber(0x12, patrol, NumberFormat.Int8LE)
-        return pins.i2cReadNumber(0x12, NumberFormat.Int8LE);
+        pins.i2cWriteNumber(0x12, patrol, NumberFormat.UInt8LE)
+        return pins.i2cReadNumber(0x12, NumberFormat.UInt8LE);
     }
     
 
