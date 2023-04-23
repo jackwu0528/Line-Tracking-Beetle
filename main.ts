@@ -23,13 +23,13 @@ enum Color {
 
 enum Patrol {
     //% block="Q1"
-    Q1:number = 0,
+    Q1 = 0,
     //%block="Q2"
-    Q2:number = 1,
+    Q2 = 1,
     //%block="Q3"
-    Q3:number = 2,
+    Q3 = 2,
     //%block="Q4"
-    Q4:number = 3
+    Q4 = 3
 }
 
 //% weight=0 color=#c7a22b icon="\uf135" block="Maqueen Mechanic-Beetle"
@@ -124,7 +124,7 @@ namespace MaqueenMechanicBeetle {
     //% weight=0
     //% block="read line-tracking sensor|%patrol grayscale "
     export function readPatrolVoltage(patrol: Patrol): number {
-        pins.i2cWriteNumber(0x12, 33+patrol, NumberFormat.Int8LE);
+        pins.i2cWriteNumber(0x12, patrol, NumberFormat.Int8LE);
         let patrol_AD = pins.i2cReadBuffer(0x11, 1);  
         return patrol_AD;
     }
