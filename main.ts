@@ -8,22 +8,20 @@ enum Servos {
     plier_servo = 1
 }
 
-enum ColorEvent {
-    //% block=Black
-    Black = 0,
-    //% block=Red
-    Red = 1,
-    //% block=Green
-    Green = 2,
-    //% block=Blue
-    Blue = 3,
-    //% block=White
-    White = 4,
-    //% block=Others
-    Other = 5
-};
+enum Color {
+    //%block="Red"
+    RED = 1,
+    //%block="Green"
+    GREEN = 2,
+    //%block="Blue"
+    BLUE = 3,
+    //%block="Black"
+    BLACK = 4,
+    //%block="White"
+    WHITH = 5
+}
 
-enum Patrol {
+enum Patrol : number {
     //% block="Q1"
     Q1 = 0,
     //%block="Q2"
