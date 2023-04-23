@@ -21,15 +21,15 @@ enum Color {
     WHITH = 5
 }
 
-enum Patrol : number {
+enum Patrol {
     //% block="Q1"
-    Q1 = 0,
+    Q1:number = 0,
     //%block="Q2"
-    Q2 = 1,
+    Q2:number = 1,
     //%block="Q3"
-    Q3 = 2,
+    Q3:number = 2,
     //%block="Q4"
-    Q4 = 3
+    Q4:number = 3
 }
 
 //% weight=0 color=#c7a22b icon="\uf135" block="Maqueen Mechanic-Beetle"
