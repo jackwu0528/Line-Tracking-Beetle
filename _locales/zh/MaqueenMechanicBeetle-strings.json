@@ -6,5 +6,7 @@
     "MaqueenMechanicBeetle.turn_on_fill_light|block": "開啟補光燈",
     "MaqueenMechanicBeetle.turn_off_fill_light|block": "關閉補光燈",
     "MaqueenMechanicBeetle.initialize_color_sensor|block": "初始化顏色感測器",
-    "MaqueenMechanicBeetle.get_color|block": "讀取顏色數值"
+    "MaqueenMechanicBeetle.get_color|block": "讀取顏色數值",
+    "MaqueenMechanicBeetle.readPatrolVoltage|block": "讀取巡線感測器灰度值",
+    "MaqueenMechanicBeetle.readPatrol|block": "讀取巡線感測器"
 }

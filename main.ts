@@ -23,7 +23,18 @@ enum ColorEvent {
     Other = 5
 };
 
-//% weight=0 color=#d4af37 icon="\uf135" block="Maqueen Mechanic-Beetle"
+enum Patrol {
+    //% block="Q1"
+    Q1 = 0,
+    //%block="Q2"
+    Q2 = 1,
+    //%block="Q3"
+    Q3 = 2,
+    //%block="Q4"
+    Q4 = 3
+}
+
+//% weight=0 color=#c7a22b icon="\uf135" block="Maqueen Mechanic-Beetle"
 namespace MaqueenMechanicBeetle {
     //% weight=0
     //% blockId=servo_run block="Servo|%index|Angle|%angle (0~90)"
@@ -109,5 +120,21 @@ namespace MaqueenMechanicBeetle {
         }
 
         return (color_b + color_g * 256 + color_r * 65536);
+    }
+
+
+    //% weight=0
+    //% block="read line-tracking sensor|%patrol grayscale "
+    export function readPatrolVoltage(patrol: Patrol): number {
+        pins.i2cWriteNumber(0x12, 33+patrol, NumberFormat.Int8LE);
+        let patrol_AD = pins.i2cReadBuffer(0x11, 1);  
+        return patrol_AD;
+    }
+    
+
+    //% weight=0
+    //%block="read line-tracking sensor|%patrol"
+    export function readPatrol(patrol: Patrol): number {
+        return readPatrolVoltage(patrol) > LINE_THRESHOLD ? 1 : 0;
     }
 }
