@@ -14,5 +14,15 @@
     "public": true,
     "supportedTargets": [
         "microbit"
-    ]
+    ],
+    "preferredEditor": "tsprj",
+    "yotta": {
+        "config": {
+            "microbit-dal": {
+                "bluetooth": {
+                    "enabled": 0
+                }
+            }
+        }
+    }
 }
