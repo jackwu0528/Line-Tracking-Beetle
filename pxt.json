@@ -11,5 +11,8 @@
         "main.ts",
         "_locales/zh/MaqueenMechanicBeetle-strings.json"
     ],
-    "public": true
+    "public": true,
+    "supportedTargets": [
+        "microbit"
+    ]
 }
