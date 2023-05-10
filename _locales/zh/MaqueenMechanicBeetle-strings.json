@@ -16,7 +16,7 @@
     "MaqueenMechanicBeetle.turn_on_fill_light|block": "開啟補光燈",
     "MaqueenMechanicBeetle.turn_off_fill_light|block": "關閉補光燈",
     "MaqueenMechanicBeetle.initialize_color_sensor|block": "初始化顏色感測器",
-    "MaqueenMechanicBeetle.get_color|block": "讀取顏色感測數值",
-    "MaqueenMechanicBeetle.readPatrolVoltage|block": "讀取循線感測 %patrol 灰度值",
-    "MaqueenMechanicBeetle.readPatrol|block": "讀取巡線感測器 %patrol"
+    "MaqueenMechanicBeetle.get_color|block": "讀取顏色感測器數值",
+    "MaqueenMechanicBeetle.readPatrolVoltage|block": "讀取循線感測器 %patrol 灰度值",
+    "MaqueenMechanicBeetle.sensed_line|block": "循線感測器 %patrol 偵測到路線"
 }

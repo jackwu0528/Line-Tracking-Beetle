@@ -132,8 +132,8 @@ namespace MaqueenMechanicBeetle {
 
 
     //% weight=0
-    //%block="Read Line-Tracking Sensor|%patrol"
-    export function readPatrol(patrol: Patrol): boolean {
+    //%block="Line-Tracking Sensor|%patrol sensed line"
+    export function sensed_line(patrol: Patrol): boolean {
         return readPatrolVoltage(patrol) > LINE_THRESHOLD;
     }
 
