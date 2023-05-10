@@ -156,6 +156,6 @@ namespace MaqueenMechanicBeetle {
             line |= 0x1;
         }
 
-        retuen line;
+        return line;
     }
 }
