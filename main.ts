@@ -86,7 +86,7 @@ namespace MaqueenMechanicBeetle {
         buf[1] = 0x03;
         pins.i2cWriteBuffer(0x39, buf);
 
-        basic.pause(10)
+        basic.pause(10);
 
         buf[0] = 0x81;
         buf[1] = 0xD5;
@@ -99,24 +99,24 @@ namespace MaqueenMechanicBeetle {
 
 
     //% weight=0
-    //% blockId="get_color" block="Get Color Value"
+    //% blockId="get_color" block="Get Color Sensor Value"
     export function get_color(): number {
         pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE)
-        let buf = pins.i2cReadBuffer(0x39, 6)
+        let buf = pins.i2cReadBuffer(0x39, 6);
 
-        let color_r = buf[1] * 256 + buf[0]
-        let color_g = buf[3] * 256 + buf[2]
-        let color_b = buf[5] * 256 + buf[4]
-        color_r = Math.floor(color_r / WB_RGB[0])
-        color_g = Math.floor(color_g / WB_RGB[1])
-        color_b = Math.floor(color_b / WB_RGB[2])
+        let color_r = buf[1] * 256 + buf[0];
+        let color_g = buf[3] * 256 + buf[2];
+        let color_b = buf[5] * 256 + buf[4];
+        color_r = Math.floor(color_r / WB_RGB[0]);
+        color_g = Math.floor(color_g / WB_RGB[1]);
+        color_b = Math.floor(color_b / WB_RGB[2]);
 
-        let maxColor = Math.max(color_r, Math.max(color_g, color_b))
+        let maxColor = Math.max(color_r, Math.max(color_g, color_b));
         if (maxColor > 255) {
-            let scale = 255 / maxColor
-            color_r = Math.floor(color_r * scale)
-            color_g = Math.floor(color_g * scale)
-            color_b = Math.floor(color_b * scale)
+            let scale = 255 / maxColor;
+            color_r = Math.floor(color_r * scale);
+            color_g = Math.floor(color_g * scale);
+            color_b = Math.floor(color_b * scale);
         }
 
         return (color_b + color_g * 256 + color_r * 65536);
@@ -126,20 +126,36 @@ namespace MaqueenMechanicBeetle {
     //% weight=0
     //% block="Read Line-Tracking Sensor|%patrol Grayscale"
     export function readPatrolVoltage(patrol: Patrol): number {
-        pins.i2cWriteNumber(0x12, patrol, NumberFormat.UInt8LE)
+        pins.i2cWriteNumber(0x12, patrol, NumberFormat.UInt8LE);
         return pins.i2cReadNumber(0x12, NumberFormat.UInt8LE);
     }
 
 
     //% weight=0
     //%block="Line-Tracking Sensor|%patrol sensed line"
-    export function sensed_line(patrol: Patrol): boolean {
-        return readPatrolVoltage(patrol) > LINE_THRESHOLD;
-    }
+    export function sensed_line(patrol: Patrol): number {
+        let line = 0;
 
+        if(readPatrolVoltage(Q1) > LINE_THRESHOLD)
+        {
+            line |= 0x8;
+        }
 
-    //% weight=0
-    //%block="Line-Tracking"
-    export function line_tracking(): void {
+       if(readPatrolVoltage(Q2) > LINE_THRESHOLD)
+        {
+            line |= 0x4;
+        }
+
+       if(readPatrolVoltage(Q3) > LINE_THRESHOLD)
+        {
+            line |= 0x2;
+        }
+
+       if(readPatrolVoltage(Q4) > LINE_THRESHOLD)
+        {
+            line |= 0x1;
+        }
+
+        retuen line;
     }
 }
