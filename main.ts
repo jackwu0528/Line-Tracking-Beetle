@@ -53,7 +53,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=0
+    //% weight=1
     //% blockId="turn_on_fill_light" block="Trun On Fill Light"
     export function turn_on_fill_light(): void {
         let buf = pins.createBuffer(2);
@@ -65,7 +65,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=0
+    //% weight=2
     //% blockId="turn_off_fill_light" block="Trun Off Fill Light"
     export function turn_off_fill_light(): void {
         let buf = pins.createBuffer(2);
@@ -77,7 +77,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=0
+    //% weight=3
     //% blockId="initialize_color_sensor" block="Initialize Color Sensor"
     export function initialize_color_sensor(): void {
         let buf = pins.createBuffer(2);
@@ -98,7 +98,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=0
+    //% weight=4
     //% blockId="get_color" block="Get Color Sensor Value"
     export function get_color(): number {
         pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE)
@@ -123,7 +123,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=0
+    //% weight=5
     //% block="Read Line-Tracking Sensor|%patrol Grayscale"
     export function readPatrolVoltage(patrol: Patrol): number {
         pins.i2cWriteNumber(0x12, patrol, NumberFormat.UInt8LE);
@@ -131,9 +131,9 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=0
-    //%block="Line-Tracking Sensor|%patrol sensed line"
-    export function sensed_line(patrol: Patrol): number {
+    //% weight=6
+    //%block="Get Line-Tracking Sensor State"
+    export function get_line_tracking(): number {
         let line = 0;
 
         if(readPatrolVoltage(Q1) > LINE_THRESHOLD)
