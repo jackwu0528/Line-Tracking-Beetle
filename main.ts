@@ -18,17 +18,19 @@ const enum Color {
     //%block="Black"
     BLACK = 4,
     //%block="White"
-    WHITH = 5
+    WHITH = 5,
+    //%block="Others"
+    OTHERS = 6
 }
 
 const enum Patrol {
-    //%block="Q1"
+    //%block="Leftmost (Q1)"
     Q1 = 33,
-    //%block="Q2"
+    //%block="Left (Q2)"
     Q2 = 34,
-    //%block="Q3"
+    //%block="Right (Q3)"
     Q3 = 35,
-    //%block="Q4"
+    //%block="Rightmost (Q4)"
     Q4 = 36
 }
 
@@ -97,7 +99,7 @@ namespace MaqueenMechanicBeetle {
 
 
     //% weight=0
-    //% blockId="get_color" block="Measure Color"
+    //% blockId="get_color" block="Get Color Value"
     export function get_color(): number {
         pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE)
         let buf = pins.i2cReadBuffer(0x39, 6)
