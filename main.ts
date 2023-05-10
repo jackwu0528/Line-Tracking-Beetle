@@ -136,22 +136,22 @@ namespace MaqueenMechanicBeetle {
     export function get_line_tracking(): number {
         let line = 0;
 
-        if(readPatrolVoltage(Q1) > LINE_THRESHOLD)
+        if(readPatrolVoltage(Patrol.Q1) > LINE_THRESHOLD)
         {
             line |= 0x8;
         }
 
-       if(readPatrolVoltage(Q2) > LINE_THRESHOLD)
+       if(readPatrolVoltage(Patrol.Q2) > LINE_THRESHOLD)
         {
             line |= 0x4;
         }
 
-       if(readPatrolVoltage(Q3) > LINE_THRESHOLD)
+       if(readPatrolVoltage(Patrol.Q3) > LINE_THRESHOLD)
         {
             line |= 0x2;
         }
 
-       if(readPatrolVoltage(Q4) > LINE_THRESHOLD)
+       if(readPatrolVoltage(Patrol.Q4) > LINE_THRESHOLD)
         {
             line |= 0x1;
         }
