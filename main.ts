@@ -128,19 +128,20 @@ namespace MaqueenMechanicBeetle {
     export function get_line_tracking(): number {
         let line = 0;
         pins.i2cWriteNumber(0x12, 33, NumberFormat.UInt8LE);
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
+        let buf = pins.i2cReadBuffer(0x12, 4);
+        if(buf[0] > LINE_THRESHOLD)
         {
             line |= 0x8;
         }
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
+        if(buf[1] > LINE_THRESHOLD)
         {
             line |= 0x4;
         }
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
+        if(buf[2] > LINE_THRESHOLD)
         {
             line |= 0x2;
         }
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, false)> LINE_THRESHOLD)
+        if(buf[3] > LINE_THRESHOLD)
         {
             line |= 0x1;
         }
