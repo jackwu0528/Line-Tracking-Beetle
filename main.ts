@@ -1,5 +1,5 @@
-let WB_RGB = [0.52, 1, 1]
-let LINE_THRESHOLD = 165
+let WB_RGB = [0.52, 1, 1];
+let LINE_THRESHOLD = 150;
 
 const enum Servos {
     //% blockId="S1" block="Lift (S1)"
@@ -126,8 +126,8 @@ namespace MaqueenMechanicBeetle {
     //% weight=70
     //%block="Get Line-Tracking Sensor State"
     export function get_line_tracking(): number {
-        pins.i2cWriteNumber(0x12, 0x33, NumberFormat.UInt8LE)
         let line = 0;
+        pins.i2cWriteNumber(0x12, 0x33, NumberFormat.UInt8LE)        
         if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
         {
             line |= 0x8;
