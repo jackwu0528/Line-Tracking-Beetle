@@ -1,5 +1,5 @@
 let WB_RGB = [0.52, 1, 1]
-let LINE_THRESHOLD = 150
+let LINE_THRESHOLD = 165
 
 const enum Servos {
     //% blockId="S1" block="Lift (S1)"
@@ -124,37 +124,28 @@ namespace MaqueenMechanicBeetle {
 
 
     //% weight=5
-    //% block="Read Line-Tracking Sensor|%patrol Grayscale"
-    export function readPatrolVoltage(patrol: Patrol): number {
-        pins.i2cWriteNumber(0x12, patrol, NumberFormat.UInt8LE);
-        return pins.i2cReadNumber(0x12, NumberFormat.UInt8LE);
-    }
-
-
-    //% weight=6
     //%block="Get Line-Tracking Sensor State"
     export function get_line_tracking(): number {
-        let line = 0;
+        pins.i2cWriteNumber(0x12, 0x33, NumberFormat.UInt8LE)
+        let buf = pins.i2cReadBuffer(0x12, 4);
 
-        if(readPatrolVoltage(Patrol.Q1) > LINE_THRESHOLD)
+        let line = 0;
+        if(buf[0] > LINE_THRESHOLD)
         {
             line |= 0x8;
         }
-
-       if(readPatrolVoltage(Patrol.Q2) > LINE_THRESHOLD)
-        {
+       if(buf[1] > LINE_THRESHOLD)
+       {
             line |= 0x4;
-        }
-
-       if(readPatrolVoltage(Patrol.Q3) > LINE_THRESHOLD)
-        {
+       }
+       if(buf[2] > LINE_THRESHOLD)
+       {
             line |= 0x2;
         }
-
-       if(readPatrolVoltage(Patrol.Q4) > LINE_THRESHOLD)
-        {
+       if(buf[3] > LINE_THRESHOLD)
+       {
             line |= 0x1;
-        }
+       }
 
         return line;
     }
