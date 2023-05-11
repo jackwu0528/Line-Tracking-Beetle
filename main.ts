@@ -166,25 +166,21 @@ namespace MaqueenMechanicBeetle {
         let Line_Cal = [0, 0, 0, 0];
 
         basic.pause(300);
-        music.playTone(587, music.beat(BeatFraction.Quarter))
-        music.playTone(784, music.beat(BeatFraction.Quarter))
-        basic.pause(200)
-
-        basic.pause(1000)
-        music.playTone(784, music.beat(BeatFraction.Quarter))
-        basic.pause(200)
+        music.playTone(587, music.beat(BeatFraction.Quarter));
+        music.playTone(784, music.beat(BeatFraction.Quarter));
+        basic.pause(200);
 
         for (let i = 0; i < 20; i++) {
             for (let j = 0; j < 4; j++) {
-                Line_Cal[j] += readPatrolVoltage(Patrol.Q1+j)
+                Line_Cal[j] += readPatrolVoltage(Patrol.Q1+j);
             }
-            basic.pause(50)
+            basic.pause(50);
         }
         for (let i = 0; i < 4; i++) {
-            LINE_THRESHOLD[i] = Line_Cal[i] / 20 + 100;
+            LINE_THRESHOLD[i] = Line_Cal[i] / 20;
         }
 
-        music.playTone(784, music.beat(BeatFraction.Quarter))
-        basic.pause(200)
+        music.playTone(784, music.beat(BeatFraction.Quarter));
+        music.playTone(587, music.beat(BeatFraction.Quarter));
     }
 }
