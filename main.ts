@@ -36,7 +36,7 @@ const enum Patrol {
 
 //% weight=0 color=#c7a22b icon="\uf135" block="Maqueen Mechanic-Beetle"
 namespace MaqueenMechanicBeetle {
-    //% weight=0
+    //% weight=95
     //% blockId=servo_run block="Servo|%index|Angle|%angle (0~90)"
     //% angle.min=0 angle.max=90
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
@@ -53,7 +53,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=1
+    //% weight=90
     //% blockId="turn_on_fill_light" block="Trun On Fill Light"
     export function turn_on_fill_light(): void {
         let buf = pins.createBuffer(2);
@@ -65,7 +65,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=2
+    //% weight=85
     //% blockId="turn_off_fill_light" block="Trun Off Fill Light"
     export function turn_off_fill_light(): void {
         let buf = pins.createBuffer(2);
@@ -77,7 +77,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=3
+    //% weight=80
     //% blockId="initialize_color_sensor" block="Initialize Color Sensor"
     export function initialize_color_sensor(): void {
         let buf = pins.createBuffer(2);
@@ -98,7 +98,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=4
+    //% weight=75
     //% blockId="get_color" block="Get Color Sensor Value"
     export function get_color(): number {
         pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE)
@@ -123,7 +123,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=5
+    //% weight=70
     //%block="Get Line-Tracking Sensor State"
     export function get_line_tracking(): number {
         pins.i2cWriteNumber(0x12, 0x33, NumberFormat.UInt8LE)
