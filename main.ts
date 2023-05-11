@@ -177,7 +177,7 @@ namespace MaqueenMechanicBeetle {
             basic.pause(50);
         }
         for (let i = 0; i < 4; i++) {
-            LINE_THRESHOLD[i] = Line_Cal[i] / 20;
+            LINE_THRESHOLD[i] = (Line_Cal[i] / 20) * ;
         }
 
         music.playTone(784, music.beat(BeatFraction.Quarter));
