@@ -1,5 +1,5 @@
 let WB_RGB = [0.52, 1, 1];
-let LINE_THRESHOLD = 150;
+let LINE_THRESHOLD = 165;
 
 const enum Servos {
     //% blockId="S1" block="Lift (S1)"
@@ -101,7 +101,7 @@ namespace MaqueenMechanicBeetle {
     //% weight=75
     //% blockId="get_color" block="Get Color Sensor Value"
     export function get_color(): number {
-        pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE)
+        pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE);
         let buf = pins.i2cReadBuffer(0x39, 6);
 
         let color_r = buf[1] * 256 + buf[0];
@@ -127,21 +127,23 @@ namespace MaqueenMechanicBeetle {
     //%block="Get Line-Tracking Sensor State"
     export function get_line_tracking(): number {
         let line = 0;
-        pins.i2cWriteNumber(0x12, 33, NumberFormat.UInt8LE);
-        let buf = pins.i2cReadBuffer(0x12, 4);
-        if(buf[0] > LINE_THRESHOLD)
+        pins.i2cWriteNumber(0x12, Patrol.Q1, NumberFormat.UInt8LE);
+        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
         {
             line |= 0x8;
         }
-        if(buf[1] > LINE_THRESHOLD)
+        pins.i2cWriteNumber(0x12, Patrol.Q2, NumberFormat.UInt8LE);
+        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
         {
             line |= 0x4;
         }
-        if(buf[2] > LINE_THRESHOLD)
+        pins.i2cWriteNumber(0x12, Patrol.Q3, NumberFormat.UInt8LE);
+        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
         {
             line |= 0x2;
         }
-        if(buf[3] > LINE_THRESHOLD)
+        pins.i2cWriteNumber(0x12, Patrol.Q4, NumberFormat.UInt8LE);
+        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
         {
             line |= 0x1;
         }
