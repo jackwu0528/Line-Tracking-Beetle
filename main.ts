@@ -127,23 +127,23 @@ namespace MaqueenMechanicBeetle {
     //%block="Get Line-Tracking Sensor State"
     export function get_line_tracking(): number {
         let line = 0;
-        pins.i2cWriteNumber(0x12, 0x33, NumberFormat.UInt8LE)        
+        pins.i2cWriteNumber(0x12, 0x33, NumberFormat.UInt8LE);
         if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
         {
             line |= 0x8;
         }
-       if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
-       {
+        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
+        {
             line |= 0x4;
-       }
-       if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
-       {
+        }
+        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, true) > LINE_THRESHOLD)
+        {
             line |= 0x2;
         }
-       if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, false)> LINE_THRESHOLD)
-       {
+        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE, false)> LINE_THRESHOLD)
+        {
             line |= 0x1;
-       }
+        }
 
         return line;
     }
