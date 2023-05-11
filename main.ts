@@ -1,5 +1,5 @@
 let WB_RGB = [0.52, 1, 1];
-let LINE_THRESHOLD = 165;
+let LINE_THRESHOLD = [150, 150, 150, 150];
 
 const enum Servos {
     //% blockId="S1" block="Lift (S1)"
@@ -124,30 +124,63 @@ namespace MaqueenMechanicBeetle {
 
 
     //% weight=70
+    //% block="Read Line-Tracking Sensor|%patrol Grayscale"
+    export function readPatrolVoltage(patrol: Patrol): number {
+        pins.i2cWriteNumber(0x12, patrol, NumberFormat.UInt8LE);
+        return pins.i2cReadNumber(0x12, NumberFormat.UInt8LE);
+    }
+
+
+    //% weight=65
     //%block="Get Line-Tracking Sensor State"
     export function get_line_tracking(): number {
         let line = 0;
-        pins.i2cWriteNumber(0x12, Patrol.Q1, NumberFormat.UInt8LE);
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
+        if(readPatrolVoltage(Patrol.Q1) > LINE_THRESHOLD)
         {
             line |= 0x8;
         }
-        pins.i2cWriteNumber(0x12, Patrol.Q2, NumberFormat.UInt8LE);
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
+        if(readPatrolVoltage(Patrol.Q2) > LINE_THRESHOLD)
         {
             line |= 0x4;
         }
-        pins.i2cWriteNumber(0x12, Patrol.Q3, NumberFormat.UInt8LE);
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
+        if(readPatrolVoltage(Patrol.Q3) > LINE_THRESHOLD)
         {
             line |= 0x2;
         }
-        pins.i2cWriteNumber(0x12, Patrol.Q4, NumberFormat.UInt8LE);
-        if(pins.i2cReadNumber(0x12, NumberFormat.UInt8LE) > LINE_THRESHOLD)
+        if(readPatrolVoltage(Patrol.Q4) > LINE_THRESHOLD)
         {
             line |= 0x1;
         }
 
         return line;
+    }
+
+
+    //% weight=60
+    //%block="Calibrate Line-Tracking Sensor"
+    export function calibrate_line_tracking(): void {
+        let Line_Cal = [0, 0, 0, 0];
+
+        basic.pause(300);
+        music.playTone(587, music.beat(BeatFraction.Quarter))
+        music.playTone(784, music.beat(BeatFraction.Quarter))
+        basic.pause(200)
+
+        basic.pause(1000)
+        music.playTone(784, music.beat(BeatFraction.Quarter))
+        basic.pause(200)
+
+        for (let i = 0; i < 20; i++) {
+            for (let j = 0; j < 4; j++) {
+                Line_Cal[j] += readPatrolVoltage(Patrol.Q1+j)
+            }
+            basic.pause(50)
+        }
+        for (let i = 0; i < 4; i++) {
+            LINE_THRESHOLD[i] = Line_Cal[i] / 20;
+        }
+
+        music.playTone(784, music.beat(BeatFraction.Quarter))
+        basic.pause(200)
     }
 }
