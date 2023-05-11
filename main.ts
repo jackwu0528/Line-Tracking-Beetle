@@ -1,5 +1,5 @@
-let WB_RGB = [0.52, 1, 1];
-let LINE_THRESHOLD = [150, 150, 150, 150];
+let WB_RGB = [0.52, 1, 1]
+let LINE_THRESHOLD = 150
 
 const enum Servos {
     //% blockId="S1" block="Lift (S1)"
@@ -36,7 +36,7 @@ const enum Patrol {
 
 //% weight=0 color=#c7a22b icon="\uf135" block="Maqueen Mechanic-Beetle"
 namespace MaqueenMechanicBeetle {
-    //% weight=95
+    //% weight=0
     //% blockId=servo_run block="Servo|%index|Angle|%angle (0~90)"
     //% angle.min=0 angle.max=90
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
@@ -53,7 +53,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=90
+    //% weight=1
     //% blockId="turn_on_fill_light" block="Trun On Fill Light"
     export function turn_on_fill_light(): void {
         let buf = pins.createBuffer(2);
@@ -65,7 +65,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=85
+    //% weight=2
     //% blockId="turn_off_fill_light" block="Trun Off Fill Light"
     export function turn_off_fill_light(): void {
         let buf = pins.createBuffer(2);
@@ -77,7 +77,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=80
+    //% weight=3
     //% blockId="initialize_color_sensor" block="Initialize Color Sensor"
     export function initialize_color_sensor(): void {
         let buf = pins.createBuffer(2);
@@ -98,10 +98,10 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=75
+    //% weight=4
     //% blockId="get_color" block="Get Color Sensor Value"
     export function get_color(): number {
-        pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE);
+        pins.i2cWriteNumber(0x39, 0x96, NumberFormat.UInt8LE)
         let buf = pins.i2cReadBuffer(0x39, 6);
 
         let color_r = buf[1] * 256 + buf[0];
@@ -123,7 +123,7 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=70
+    //% weight=5
     //% block="Read Line-Tracking Sensor|%patrol Grayscale"
     export function readPatrolVoltage(patrol: Patrol): number {
         pins.i2cWriteNumber(0x12, patrol, NumberFormat.UInt8LE);
@@ -131,56 +131,31 @@ namespace MaqueenMechanicBeetle {
     }
 
 
-    //% weight=65
+    //% weight=6
     //%block="Get Line-Tracking Sensor State"
     export function get_line_tracking(): number {
         let line = 0;
-        if(readPatrolVoltage(Patrol.Q1) > LINE_THRESHOLD)
+
+        if(readPatrolVoltage(Patrol.Q1) > LINE_THRESHOLD[0])
         {
             line |= 0x8;
         }
-        if(readPatrolVoltage(Patrol.Q2) > LINE_THRESHOLD)
+
+       if(readPatrolVoltage(Patrol.Q2) > LINE_THRESHOLD[1])
         {
             line |= 0x4;
         }
-        if(readPatrolVoltage(Patrol.Q3) > LINE_THRESHOLD)
+
+       if(readPatrolVoltage(Patrol.Q3) > LINE_THRESHOLD[2])
         {
             line |= 0x2;
         }
-        if(readPatrolVoltage(Patrol.Q4) > LINE_THRESHOLD)
+
+       if(readPatrolVoltage(Patrol.Q4) > LINE_THRESHOLD[3])
         {
             line |= 0x1;
         }
 
         return line;
-    }
-
-
-    //% weight=60
-    //%block="Calibrate Line-Tracking Sensor"
-    export function calibrate_line_tracking(): void {
-        let Line_Cal = [0, 0, 0, 0];
-
-        basic.pause(300);
-        music.playTone(587, music.beat(BeatFraction.Quarter))
-        music.playTone(784, music.beat(BeatFraction.Quarter))
-        basic.pause(200)
-
-        basic.pause(1000)
-        music.playTone(784, music.beat(BeatFraction.Quarter))
-        basic.pause(200)
-
-        for (let i = 0; i < 20; i++) {
-            for (let j = 0; j < 4; j++) {
-                Line_Cal[j] += readPatrolVoltage(Patrol.Q1+j)
-            }
-            basic.pause(50)
-        }
-        for (let i = 0; i < 4; i++) {
-            LINE_THRESHOLD[i] = Line_Cal[i] / 20;
-        }
-
-        music.playTone(784, music.beat(BeatFraction.Quarter))
-        basic.pause(200)
     }
 }
